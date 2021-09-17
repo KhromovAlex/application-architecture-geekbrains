@@ -6,15 +6,21 @@ class MainPresenter(
 ) {
 
     init {
-        for (index in model.indices) {
-            view.showCounter(index = index, counter = "0")
-        }
+        view.showCounter1(counter = "0")
+        view.showCounter2(counter = "0")
+        view.showCounter3(counter = "0")
     }
 
-    fun countUp(index: Int) {
-        if (index > model.size - 1) return
+    fun countUp1() {
+        view.showCounter1((++model[0]).toString())
+    }
 
-        view.showCounter(index, (++model[index]).toString())
+    fun countUp2() {
+        view.showCounter2((++model[1]).toString())
+    }
+
+    fun countUp3() {
+        view.showCounter3((++model[2]).toString())
     }
 
 }
