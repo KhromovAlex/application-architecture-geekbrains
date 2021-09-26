@@ -2,6 +2,7 @@ package com.example.applicationarchitecturegeekbrains.presentation.users
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationarchitecturegeekbrains.App.Navigator.router
@@ -19,7 +20,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            userRepository = GitHubUserRepository(),
+            userRepository = GitHubUserRepository,
             router = router
         )
     }
@@ -34,6 +35,10 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
 
     override fun showUsers(list: List<GitHubUser>) {
         userAdapter.submitList(users = list)
+    }
+
+    override fun showError(throwable: Throwable) {
+        Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show()
     }
 
     override fun onClickUser(user: GitHubUser) {
