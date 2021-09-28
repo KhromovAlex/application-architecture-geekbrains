@@ -1,7 +1,6 @@
 package com.example.applicationarchitecturegeekbrains.presentation.user
 
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -32,12 +31,14 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         private const val ARG_ID = "user id"
 
         @JvmStatic
-        fun newInstance(userId: Int) : Fragment =
-            UserFragment().apply {
-                arguments = bundleOf(
-                    ARG_ID to userId
-                )
-            }
+
+    fun newInstance(userId: Int) : Fragment =
+        UserFragment().apply {
+            arguments = bundleOf(
+                ARG_ID to userId
+
+            )
+        }
 
     }
 

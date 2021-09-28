@@ -4,6 +4,7 @@ import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
+import java.lang.RuntimeException
 
 class UserPresenter(
     private val userId: Int?,
@@ -13,17 +14,20 @@ class UserPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        if (userId == null) return
 
-        disposable.add(
-            userRepository.getUserById(id = userId)
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    viewState::showLogin,
-                    viewState::showError,
-                    viewState::undefinedLogin,
-                )
-        )
+        if (userId == null) {
+          disposable.add(
+              userRepository.getUserById(id = userId)
+                  .subscribeOn(Schedulers.io())
+                  .subscribe(
+                      viewState::showLogin,
+                      viewState::showError,
+                      viewState::undefinedLogin,
+                  )
+          )
+        } else {
+            viewState.showError(RuntimeException("Login undefined"))
+        }
 
     }
 
