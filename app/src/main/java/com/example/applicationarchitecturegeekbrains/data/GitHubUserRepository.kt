@@ -21,5 +21,4 @@ object GitHubUserRepository {
             ?.let { user -> Maybe.just(user) }
             ?: Maybe.empty()
 
-
 }

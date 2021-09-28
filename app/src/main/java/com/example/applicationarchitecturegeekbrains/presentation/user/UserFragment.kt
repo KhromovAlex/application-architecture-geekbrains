@@ -32,13 +32,12 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
 
         @JvmStatic
 
-    fun newInstance(userId: Int) : Fragment =
-        UserFragment().apply {
-            arguments = bundleOf(
-                ARG_ID to userId
-
-            )
-        }
+        fun newInstance(userId: Int): Fragment =
+            UserFragment().apply {
+                arguments = bundleOf(
+                    ARG_ID to userId
+                )
+            }
 
     }
 

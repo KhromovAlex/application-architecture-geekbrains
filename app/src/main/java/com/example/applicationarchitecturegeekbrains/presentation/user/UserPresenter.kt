@@ -15,16 +15,16 @@ class UserPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        if (userId == null) {
-          disposable.add(
-              userRepository.getUserById(id = userId)
-                  .subscribeOn(Schedulers.io())
-                  .subscribe(
-                      viewState::showLogin,
-                      viewState::showError,
-                      viewState::undefinedLogin,
-                  )
-          )
+        if (userId != null) {
+            disposable.add(
+                userRepository.getUserById(id = userId)
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                        viewState::showLogin,
+                        viewState::showError,
+                        viewState::undefinedLogin,
+                    )
+            )
         } else {
             viewState.showError(RuntimeException("Login undefined"))
         }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationarchitecturegeekbrains.App.Navigator.router
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
-import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepositoryFactory
+import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepository
 import com.example.applicationarchitecturegeekbrains.presentation.users.adapter.UsersAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
