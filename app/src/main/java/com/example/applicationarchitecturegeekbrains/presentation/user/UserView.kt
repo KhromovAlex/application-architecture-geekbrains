@@ -13,4 +13,7 @@ interface UserView : MvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showError(throwable: Throwable)
 
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun undefinedLogin()
+
 }

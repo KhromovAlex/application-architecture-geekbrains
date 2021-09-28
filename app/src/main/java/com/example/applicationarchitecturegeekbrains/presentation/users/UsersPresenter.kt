@@ -20,6 +20,7 @@ class UsersPresenter(
         disposable.add(
             userRepository
                 .getUsers()
+                .subscribeOn(Schedulers.io())
                 .subscribe(
                     viewState::showUsers,
                     viewState::showError,

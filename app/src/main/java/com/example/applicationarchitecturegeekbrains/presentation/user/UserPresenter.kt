@@ -2,6 +2,7 @@ package com.example.applicationarchitecturegeekbrains.presentation.user
 
 import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
 class UserPresenter(
@@ -15,10 +16,12 @@ class UserPresenter(
         if (userId == null) return
 
         disposable.add(
-            userRepository.getUserById(userId)
+            userRepository.getUserById(id = userId)
+                .subscribeOn(Schedulers.io())
                 .subscribe(
                     viewState::showLogin,
                     viewState::showError,
+                    viewState::undefinedLogin,
                 )
         )
 
