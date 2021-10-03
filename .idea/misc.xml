@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/activity_main.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/fragment_repo_list.xml" value="0.17502532928064843" />
+        <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/fragment_repositories.xml" value="0.12590579710144928" />
+        <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/fragment_repository_details.xml" value="0.17502532928064843" />
         <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/fragment_user.xml" value="0.15942028985507245" />
         <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/fragment_users.xml" value="0.15942028985507245" />
+        <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/repo_list_item.xml" value="0.17502532928064843" />
         <entry key="..\:/Users/Admin/StudioProjects/Applicationarchitecturegeekbrains/app/src/main/res/layout/user_list_item.xml" value="0.15942028985507245" />
       </map>
     </option>

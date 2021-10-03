@@ -5,4 +5,8 @@
     <string name="counter_three">Счетчик 3</string>
     <string name="error">Error</string>
     <string name="undefinedLogin">Undefined Login</string>
+    <string name="convert">Convert</string>
+    <string name="success">Success</string>
+    <string name="noImageSelected">No image selected</string>
+    <string name="countForks">Count Forks %d</string>
 </resources>

@@ -1,9 +1,10 @@
 package com.example.applicationarchitecturegeekbrains.presentation.users
 
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
-import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepository
-import com.example.applicationarchitecturegeekbrains.presentation.user.UserScreen
+import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
+import com.example.applicationarchitecturegeekbrains.presentation.repositories.RepositoriesScreen
 import com.github.terrakok.cicerone.Router
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
@@ -20,6 +21,7 @@ class UsersPresenter(
         disposable.add(
             userRepository
                 .getUsers()
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     viewState::showUsers,
@@ -29,7 +31,7 @@ class UsersPresenter(
 
     }
 
-    fun displayUser(user: GitHubUser) = router.navigateTo(UserScreen(user.id))
+    fun displayRepositories(user: GitHubUser) = router.navigateTo(RepositoriesScreen(user.repos_url))
 
     override fun onDestroy() {
         disposable.dispose()
