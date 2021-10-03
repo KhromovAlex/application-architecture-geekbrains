@@ -1,12 +1,13 @@
-package com.example.applicationarchitecturegeekbrains.presentation.converter
+package com.example.applicationarchitecturegeekbrains.presentation.repository
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-class ConverterScreen : FragmentScreen {
+class RepositoryDetailsScreen(private val countForks: Int) :
+    FragmentScreen {
 
     override fun createFragment(factory: FragmentFactory): Fragment =
-        ConverterFragment.newInstance()
+        RepositoryDetailsFragment.newInstance(countForks)
 
 }

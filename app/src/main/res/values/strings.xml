@@ -8,4 +8,5 @@
     <string name="convert">Convert</string>
     <string name="success">Success</string>
     <string name="noImageSelected">No image selected</string>
+    <string name="countForks">Count Forks %d</string>
 </resources>

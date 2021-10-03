@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationarchitecturegeekbrains.App.Navigator.router
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
-import com.example.applicationarchitecturegeekbrains.data.GitHubUserRepository
+import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepositoryFactory
 import com.example.applicationarchitecturegeekbrains.presentation.users.adapter.UsersAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -20,7 +20,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            userRepository = GitHubUserRepository,
+            userRepository = GitHubUserRepositoryFactory.create(),
             router = router
         )
     }
@@ -41,7 +41,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
     }
 
     override fun onClickUser(user: GitHubUser) {
-        presenter.displayUser(user = user)
+        presenter.displayRepositories(user = user)
     }
 
 }
