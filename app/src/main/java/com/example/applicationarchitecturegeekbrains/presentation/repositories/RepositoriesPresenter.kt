@@ -12,27 +12,22 @@ import moxy.MvpPresenter
 class RepositoriesPresenter(
     private val gitHubReposRepository: GitHubReposRepository,
     private val router: Router,
-    private val url: String?,
 ) : MvpPresenter<RepositoriesView>() {
     private val disposable = CompositeDisposable()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        if (url != null) {
-            disposable.add(
-                gitHubReposRepository
-                    .getRepositories(url)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(
-                        viewState::showRepositories,
-                        viewState::showError,
-                    )
-            )
-        } else {
-            viewState.showError(Exception("Url is null"))
-        }
+        disposable.add(
+            gitHubReposRepository
+                .getRepositories()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                    viewState::showRepositories,
+                    viewState::showError,
+                )
+        )
 
     }
 

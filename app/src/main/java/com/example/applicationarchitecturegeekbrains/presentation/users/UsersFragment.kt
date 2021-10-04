@@ -20,7 +20,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            userRepository = GitHubUserRepositoryFactory.create(),
+            userRepository = GitHubUserRepositoryFactory.create(requireContext()),
             router = router
         )
     }
@@ -41,7 +41,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView,
     }
 
     override fun onClickUser(user: GitHubUser) {
-        presenter.displayRepositories(user = user)
+        presenter.displayUser(user = user)
     }
 
 }

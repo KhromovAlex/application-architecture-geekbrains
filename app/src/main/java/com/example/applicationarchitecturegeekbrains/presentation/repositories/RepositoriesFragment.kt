@@ -18,21 +18,18 @@ import moxy.ktx.moxyPresenter
 class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories), RepositoriesView, RepositoriesAdapter.RepoClickListener {
     private var repoList: RecyclerView? = null
     private val repositoriesAdapter: RepositoriesAdapter = RepositoriesAdapter(this)
-    private var argUrl: String? = null
+    private val argUrl: String by lazy {
+        arguments?.getString(ARG_URL).orEmpty()
+    }
+    private val argUserLogin: String by lazy {
+        arguments?.getString(ARG_USER_LOGIN).orEmpty()
+    }
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
         RepositoriesPresenter(
-            gitHubReposRepository = GitHubReposRepositoryFactory.create(),
-            url = argUrl,
+            gitHubReposRepository = GitHubReposRepositoryFactory.create(context = requireContext(), url = argUrl, userLogin = argUserLogin),
             router = App.router
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        arguments?.let {
-            argUrl = it.getString(ARG_URL)
-        }
-        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,13 +40,15 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
     }
 
     companion object {
-        private const val ARG_URL = "repo info"
+        private const val ARG_URL = "repo_url"
+        private const val ARG_USER_LOGIN = "user_login"
 
         @JvmStatic
-        fun newInstance(url: String): Fragment =
+        fun newInstance(url: String, userLogin: String): Fragment =
             RepositoriesFragment().apply {
                 arguments = bundleOf(
-                    ARG_URL to url
+                    ARG_URL to url,
+                    ARG_USER_LOGIN to userLogin,
                 )
             }
 
