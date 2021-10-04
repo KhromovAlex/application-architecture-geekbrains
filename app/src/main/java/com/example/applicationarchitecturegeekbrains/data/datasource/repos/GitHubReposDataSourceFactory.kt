@@ -4,6 +4,6 @@ import com.example.applicationarchitecturegeekbrains.data.api.GitHubApiFactory
 
 object GitHubReposDataSourceFactory {
 
-    fun create(): GitHubReposDataSource = GitHubReposDataSourceImpl(GitHubApiFactory.create())
+    fun create(url: String): GitHubReposDataSource = GitHubReposDataSourceImpl(GitHubApiFactory.create(), url)
 
 }

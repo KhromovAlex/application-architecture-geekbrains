@@ -1,10 +1,10 @@
 package com.example.applicationarchitecturegeekbrains.domain.repository.repos
 
 import com.example.applicationarchitecturegeekbrains.data.GitHubRepos
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Observable
 
 interface GitHubReposRepository {
 
-    fun getRepositories(url: String): Single<List<GitHubRepos>>
+    fun getRepositories(): Observable<List<GitHubRepos>>
 
 }
