@@ -12,6 +12,8 @@ import moxy.MvpPresenter
 class RepositoriesPresenter(
     private val gitHubReposRepository: GitHubReposRepository,
     private val router: Router,
+    private val url: String,
+    private val userLogin: String
 ) : MvpPresenter<RepositoriesView>() {
     private val disposable = CompositeDisposable()
 
@@ -20,7 +22,7 @@ class RepositoriesPresenter(
 
         disposable.add(
             gitHubReposRepository
-                .getRepositories()
+                .getRepositories(url = url, userLogin = userLogin)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(

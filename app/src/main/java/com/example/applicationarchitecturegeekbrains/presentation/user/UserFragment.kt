@@ -6,15 +6,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.example.applicationarchitecturegeekbrains.App
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.R.layout.fragment_user
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
-import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepositoryFactory
-import moxy.MvpAppCompatFragment
+import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
+import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
-class UserFragment : MvpAppCompatFragment(fragment_user), UserView {
+class UserFragment : AbsFragment(fragment_user), UserView {
+
+    @Inject
+    lateinit var gitHubUserRepository: GitHubUserRepository
 
     companion object {
 
@@ -40,8 +43,8 @@ class UserFragment : MvpAppCompatFragment(fragment_user), UserView {
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
             userLogin = argUserLogin,
-            userRepository = GitHubUserRepositoryFactory.create(requireContext()),
-            router = App.router
+            userRepository = gitHubUserRepository,
+            router = router
         )
     }
 
