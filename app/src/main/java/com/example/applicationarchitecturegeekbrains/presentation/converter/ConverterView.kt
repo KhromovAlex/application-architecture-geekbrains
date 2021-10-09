@@ -10,9 +10,6 @@ interface ConverterView : MvpView {
     fun showSuccess(path: String)
 
     @StateStrategyType(SingleStateStrategy::class)
-    fun showEmpty()
-
-    @StateStrategyType(SingleStateStrategy::class)
     fun pickImage()
 
     @StateStrategyType(SingleStateStrategy::class)

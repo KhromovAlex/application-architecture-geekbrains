@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.View
 import com.example.applicationarchitecturegeekbrains.data.ConverterRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
@@ -17,15 +18,14 @@ class ConverterPresenter(
         viewState.pickImage()
     }
 
-    fun convertImage(uri: Uri?) {
+    fun convertImage(uri: Uri?, scheduler: Scheduler) {
         disposable.add(
             repository.convert(uri)
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(scheduler)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     viewState::showSuccess,
                     viewState::showError,
-                    viewState::showEmpty,
                 )
         )
     }

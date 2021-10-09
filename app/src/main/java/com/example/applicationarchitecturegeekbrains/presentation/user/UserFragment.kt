@@ -30,8 +30,6 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
     companion object {
         private const val ARG_ID = "user id"
 
-        @JvmStatic
-
         fun newInstance(userId: Int): Fragment =
             UserFragment().apply {
                 arguments = bundleOf(

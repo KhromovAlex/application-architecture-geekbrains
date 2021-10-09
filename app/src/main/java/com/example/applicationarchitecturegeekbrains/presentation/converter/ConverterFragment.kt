@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.data.ConverterRepositoryFactory
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -29,7 +30,7 @@ class ConverterFragment : MvpAppCompatFragment(R.layout.fragment_converter), Con
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Uri? = result.data?.data
 
-                presenter.convertImage(data)
+                presenter.convertImage(data, Schedulers.io())
             }
         }
 
@@ -39,17 +40,12 @@ class ConverterFragment : MvpAppCompatFragment(R.layout.fragment_converter), Con
     }
 
     companion object {
-        @JvmStatic
         fun newInstance(): Fragment =
             ConverterFragment()
     }
 
     override fun showSuccess(path: String) {
         Toast.makeText(context, path, Toast.LENGTH_LONG).show()
-    }
-
-    override fun showEmpty() {
-        Toast.makeText(context, getString(R.string.noImageSelected), Toast.LENGTH_LONG).show()
     }
 
     override fun pickImage() {
