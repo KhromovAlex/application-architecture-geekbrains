@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.data.GitHubRepos
-import com.example.applicationarchitecturegeekbrains.domain.repository.repos.GitHubReposRepository
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import com.example.applicationarchitecturegeekbrains.presentation.repositories.adapter.RepositoriesAdapter
 import moxy.ktx.moxyPresenter
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), RepositoriesView, RepositoriesAdapter.RepoClickListener {
 
     @Inject
-    lateinit var gitHubReposRepository: GitHubReposRepository
+    lateinit var repositoriesPresenterFactory: RepositoriesPresenterFactory
 
     private var repoList: RecyclerView? = null
     private val repositoriesAdapter: RepositoriesAdapter = RepositoriesAdapter(this)
@@ -30,9 +29,7 @@ class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), Reposi
     }
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
-        RepositoriesPresenter(
-            gitHubReposRepository = gitHubReposRepository,
-            router = router,
+        repositoriesPresenterFactory.create(
             url = argUrl,
             userLogin = argUserLogin
         )

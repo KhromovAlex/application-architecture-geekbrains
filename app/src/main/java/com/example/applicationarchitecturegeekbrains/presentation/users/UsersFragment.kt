@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationarchitecturegeekbrains.R
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
-import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import com.example.applicationarchitecturegeekbrains.presentation.users.adapter.UsersAdapter
 import moxy.ktx.moxyPresenter
@@ -16,16 +15,13 @@ import javax.inject.Inject
 class UsersFragment : AbsFragment(R.layout.fragment_users), UsersView,
     UsersAdapter.UserClickListener {
     @Inject
-    lateinit var gitHubUserRepository: GitHubUserRepository
+    lateinit var usersPresenterFactory: UsersPresenterFactory
 
     private var userList: RecyclerView? = null
     private val userAdapter: UsersAdapter = UsersAdapter(this)
 
     private val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(
-            userRepository = gitHubUserRepository,
-            router = router
-        )
+        usersPresenterFactory.create()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

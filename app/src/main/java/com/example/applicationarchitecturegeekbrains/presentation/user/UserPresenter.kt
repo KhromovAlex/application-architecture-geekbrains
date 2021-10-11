@@ -3,13 +3,15 @@ package com.example.applicationarchitecturegeekbrains.presentation.user
 import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
 import com.example.applicationarchitecturegeekbrains.presentation.repositories.RepositoriesScreen
 import com.github.terrakok.cicerone.Router
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
-class UserPresenter(
-    private val userLogin: String,
+class UserPresenter @AssistedInject constructor(
+    @Assisted private val userLogin: String,
     private val userRepository: GitHubUserRepository,
     private val router: Router,
 ) : MvpPresenter<UserView>() {

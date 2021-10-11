@@ -1,9 +1,11 @@
 package com.example.applicationarchitecturegeekbrains.presentation.repository
 
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import moxy.MvpPresenter
 
-class RepositoryDetailsPresenter(
-    private val countForks: Int?,
+class RepositoryDetailsPresenter @AssistedInject constructor(
+    @Assisted private val countForks: Int?,
 ) : MvpPresenter<RepositoryDetailsView>() {
 
     override fun onFirstViewAttach() {
