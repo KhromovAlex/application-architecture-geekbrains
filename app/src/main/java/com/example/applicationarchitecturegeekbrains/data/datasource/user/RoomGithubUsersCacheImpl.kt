@@ -4,8 +4,9 @@ import com.example.applicationarchitecturegeekbrains.data.GitHubUser
 import com.example.applicationarchitecturegeekbrains.data.database.RoomDataBase
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class RoomGithubUsersCacheImpl(
+class RoomGithubUsersCacheImpl @Inject constructor(
     private val roomDataBase: RoomDataBase
 ) : RoomGithubUsersCache {
 

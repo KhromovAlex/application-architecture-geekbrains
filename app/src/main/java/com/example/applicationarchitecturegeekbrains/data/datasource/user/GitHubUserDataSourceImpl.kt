@@ -4,8 +4,9 @@ import com.example.applicationarchitecturegeekbrains.data.api.GitHubApi
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GitHubUserDataSourceImpl(
+class GitHubUserDataSourceImpl @Inject constructor(
     private val gitHubApi: GitHubApi,
 ) : GitHubUserDataSource {
 

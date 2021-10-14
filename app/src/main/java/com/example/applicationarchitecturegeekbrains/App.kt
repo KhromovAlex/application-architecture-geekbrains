@@ -1,20 +1,25 @@
 package com.example.applicationarchitecturegeekbrains
 
-import android.app.Application
+import com.example.applicationarchitecturegeekbrains.di.DaggerAppComponent
+import com.example.applicationarchitecturegeekbrains.scheduler.DefaultSchedulers
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App : Application() {
+class App : DaggerApplication() {
 
-    companion object Navigator {
+    override fun applicationInjector(): AndroidInjector<App> =
+        DaggerAppComponent
+            .builder()
+            .withContext(applicationContext)
+            .withSchedulers(DefaultSchedulers())
+            .apply {
+                val cicerone: Cicerone<Router> = Cicerone.create()
 
-        private val cicerone: Cicerone<Router> by lazy {
-            Cicerone.create()
-        }
-
-        val navigatorHolder = cicerone.getNavigatorHolder()
-        val router = cicerone.router
-
-    }
+                withRouter(cicerone.router)
+                withNavigatorHolder(cicerone.getNavigatorHolder())
+            }
+            .build()
 
 }

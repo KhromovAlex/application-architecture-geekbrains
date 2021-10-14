@@ -6,10 +6,10 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.applicationarchitecturegeekbrains.R
-import moxy.MvpAppCompatFragment
+import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import moxy.ktx.moxyPresenter
 
-class RepositoryDetailsFragment : MvpAppCompatFragment(R.layout.fragment_repository_details), RepositoryDetailsView {
+class RepositoryDetailsFragment : AbsFragment(R.layout.fragment_repository_details), RepositoryDetailsView {
     private var argCountForks: Int? = null
 
     private val repoInfo: TextView by lazy { requireActivity().findViewById(R.id.info) }
@@ -28,7 +28,6 @@ class RepositoryDetailsFragment : MvpAppCompatFragment(R.layout.fragment_reposit
     companion object {
         private const val ARG_COUNT_FORKS = "repo count forks"
 
-        @JvmStatic
         fun newInstance(countForks: Int): Fragment =
             RepositoryDetailsFragment().apply {
                 arguments = bundleOf(

@@ -5,6 +5,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface GitHubReposDataSource {
 
-    fun fetchRepositories(): Single<List<GitHubRepos>>
+    fun fetchRepositories(url: String, userLogin: String): Single<List<GitHubRepos>>
 
 }

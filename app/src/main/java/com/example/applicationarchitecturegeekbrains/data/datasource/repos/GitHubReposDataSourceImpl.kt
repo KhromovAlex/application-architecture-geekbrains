@@ -3,13 +3,13 @@ package com.example.applicationarchitecturegeekbrains.data.datasource.repos
 import com.example.applicationarchitecturegeekbrains.data.api.GitHubApi
 import com.example.applicationarchitecturegeekbrains.data.GitHubRepos
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GitHubReposDataSourceImpl(
-    private val gitHubApi: GitHubApi,
-    private val url: String
+class GitHubReposDataSourceImpl @Inject constructor(
+    private val gitHubApi: GitHubApi
 ) : GitHubReposDataSource {
 
-    override fun fetchRepositories(): Single<List<GitHubRepos>> =
+    override fun fetchRepositories(url: String, userLogin: String): Single<List<GitHubRepos>> =
         gitHubApi.fetchRepositories(url)
 
 }

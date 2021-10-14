@@ -5,8 +5,9 @@ import com.example.applicationarchitecturegeekbrains.data.datasource.user.GitHub
 import com.example.applicationarchitecturegeekbrains.data.datasource.user.RoomGithubUsersCache
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class GitHubUserRepositoryImpl(
+class GitHubUserRepositoryImpl @Inject constructor(
     private val gitHubUserDataSource: GitHubUserDataSource,
     private val roomGithubUsersCache: RoomGithubUsersCache
 ) : GitHubUserRepository {

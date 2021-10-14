@@ -12,6 +12,7 @@ class UserPresenter(
     private val userLogin: String,
     private val userRepository: GitHubUserRepository,
     private val router: Router,
+    private val schedulers: com.example.applicationarchitecturegeekbrains.scheduler.Schedulers,
 ) : MvpPresenter<UserView>() {
 
     private val disposables = CompositeDisposable()
@@ -20,8 +21,8 @@ class UserPresenter(
         disposables.add(
             userRepository
                 .getUserByLogin(userLogin)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(schedulers.main())
+                .subscribeOn(schedulers.background())
                 .subscribe(
                     viewState::showUser,
                     viewState::showError
