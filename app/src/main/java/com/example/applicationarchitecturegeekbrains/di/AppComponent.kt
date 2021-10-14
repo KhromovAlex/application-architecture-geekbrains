@@ -30,6 +30,9 @@ interface AppComponent : AndroidInjector<App> {
         @BindsInstance
         fun withNavigatorHolder(navigatorHolder: NavigatorHolder): Builder
 
+        @BindsInstance
+        fun withSchedulers(schedulers: Schedulers): Builder
+
         fun build(): AppComponent
 
     }
