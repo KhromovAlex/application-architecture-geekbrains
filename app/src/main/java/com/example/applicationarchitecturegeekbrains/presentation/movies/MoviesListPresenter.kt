@@ -5,14 +5,13 @@ import com.example.applicationarchitecturegeekbrains.presentation.model.MovieMod
 import com.example.applicationarchitecturegeekbrains.presentation.movie.MovieDetailsScreen
 import com.github.terrakok.cicerone.Router
 import dagger.assisted.AssistedInject
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
 class MoviesListPresenter @AssistedInject constructor(
     private val movieRepository: MovieRepository,
     private val router: Router,
+    private val schedulers: com.example.applicationarchitecturegeekbrains.scheduler.Schedulers,
 ) : MvpPresenter<MoviesListView>() {
     private val disposable = CompositeDisposable()
 
@@ -23,8 +22,8 @@ class MoviesListPresenter @AssistedInject constructor(
             movieRepository
                 .getMovies()
                 .map { movies -> movies.map(MovieModel.Mapper::map) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(schedulers.main())
+                .subscribeOn(schedulers.background())
                 .subscribe(
                     viewState::showMovies,
                     viewState::showError,
