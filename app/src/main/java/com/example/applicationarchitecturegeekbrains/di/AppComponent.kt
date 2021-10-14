@@ -2,6 +2,7 @@ package com.example.applicationarchitecturegeekbrains.di
 
 import android.content.Context
 import com.example.applicationarchitecturegeekbrains.App
+import com.example.applicationarchitecturegeekbrains.scheduler.Schedulers
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import dagger.BindsInstance
@@ -22,6 +23,9 @@ interface AppComponent : AndroidInjector<App> {
 
         @BindsInstance
         fun withRouter(router: Router): Builder
+
+        @BindsInstance
+        fun withSchedulers(schedulers: Schedulers): Builder
 
         @BindsInstance
         fun withNavigatorHolder(navigatorHolder: NavigatorHolder): Builder

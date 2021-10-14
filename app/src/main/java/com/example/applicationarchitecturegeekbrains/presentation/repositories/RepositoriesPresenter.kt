@@ -13,6 +13,7 @@ class RepositoriesPresenter(
     private val gitHubReposRepository: GitHubReposRepository,
     private val router: Router,
     private val url: String,
+    private val schedulers: com.example.applicationarchitecturegeekbrains.scheduler.Schedulers,
     private val userLogin: String
 ) : MvpPresenter<RepositoriesView>() {
     private val disposable = CompositeDisposable()
@@ -23,8 +24,8 @@ class RepositoriesPresenter(
         disposable.add(
             gitHubReposRepository
                 .getRepositories(url = url, userLogin = userLogin)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(schedulers.main())
+                .subscribeOn(schedulers.background())
                 .subscribe(
                     viewState::showRepositories,
                     viewState::showError,

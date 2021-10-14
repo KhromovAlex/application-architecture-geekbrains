@@ -11,6 +11,7 @@ import com.example.applicationarchitecturegeekbrains.R.layout.fragment_user
 import com.example.applicationarchitecturegeekbrains.data.GitHubUser
 import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
+import com.example.applicationarchitecturegeekbrains.scheduler.DefaultSchedulers
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
@@ -44,7 +45,8 @@ class UserFragment : AbsFragment(fragment_user), UserView {
         UserPresenter(
             userLogin = argUserLogin,
             userRepository = gitHubUserRepository,
-            router = router
+            router = router,
+            schedulers = DefaultSchedulers()
         )
     }
 

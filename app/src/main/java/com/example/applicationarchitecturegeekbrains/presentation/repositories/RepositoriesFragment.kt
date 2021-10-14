@@ -12,6 +12,7 @@ import com.example.applicationarchitecturegeekbrains.data.GitHubRepos
 import com.example.applicationarchitecturegeekbrains.domain.repository.repos.GitHubReposRepository
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import com.example.applicationarchitecturegeekbrains.presentation.repositories.adapter.RepositoriesAdapter
+import com.example.applicationarchitecturegeekbrains.scheduler.DefaultSchedulers
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
@@ -34,7 +35,8 @@ class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), Reposi
             gitHubReposRepository = gitHubReposRepository,
             router = router,
             url = argUrl,
-            userLogin = argUserLogin
+            userLogin = argUserLogin,
+            schedulers = DefaultSchedulers()
         )
     }
 

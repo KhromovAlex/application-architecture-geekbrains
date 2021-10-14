@@ -10,6 +10,7 @@ import com.example.applicationarchitecturegeekbrains.data.GitHubUser
 import com.example.applicationarchitecturegeekbrains.domain.repository.user.GitHubUserRepository
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import com.example.applicationarchitecturegeekbrains.presentation.users.adapter.UsersAdapter
+import com.example.applicationarchitecturegeekbrains.scheduler.DefaultSchedulers
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
@@ -24,7 +25,8 @@ class UsersFragment : AbsFragment(R.layout.fragment_users), UsersView,
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
             userRepository = gitHubUserRepository,
-            router = router
+            router = router,
+            schedulers = DefaultSchedulers()
         )
     }
 
