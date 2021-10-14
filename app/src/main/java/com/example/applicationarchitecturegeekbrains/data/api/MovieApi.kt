@@ -7,10 +7,10 @@ import retrofit2.http.Path
 
 interface MovieApi {
 
-    @GET("/movie/popular")
+    @GET("/3/movie/popular")
     fun getMovies(): Single<List<Movie>>
 
-    @GET("/movie/{movie_id}")
+    @GET("/3/movie/{movie_id}")
     fun getMovieById(@Path("movie_id") id: Int): Single<Movie>
 
 }
