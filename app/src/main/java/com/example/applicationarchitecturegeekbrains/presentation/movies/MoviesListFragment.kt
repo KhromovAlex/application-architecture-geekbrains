@@ -5,15 +5,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.applicationarchitecturegeekbrains.R
+import com.example.applicationarchitecturegeekbrains.databinding.FragmentMoviesListBinding
 import com.example.applicationarchitecturegeekbrains.presentation.abs.AbsFragment
 import com.example.applicationarchitecturegeekbrains.presentation.model.MovieModel
 import com.example.applicationarchitecturegeekbrains.presentation.movies.adapter.MoviesListAdapter
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
-class MoviesListFragment : AbsFragment(R.layout.fragment_movies_list),MoviesListView,
+class MoviesListFragment : AbsFragment(R.layout.fragment_movies_list), MoviesListView,
     MoviesListAdapter.MovieClickListener {
     @Inject
     lateinit var moviesListPresenterFactory: MoviesListPresenterFactory
@@ -22,15 +23,15 @@ class MoviesListFragment : AbsFragment(R.layout.fragment_movies_list),MoviesList
         moviesListPresenterFactory.create()
     }
 
-    private var moviesList: RecyclerView? = null
-
+    private val viewBinding: FragmentMoviesListBinding by viewBinding()
     private val moviesListAdapter: MoviesListAdapter = MoviesListAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        moviesList = requireActivity().findViewById(R.id.moviesList)
-        moviesList?.layoutManager = LinearLayoutManager(requireContext())
-        moviesList?.adapter = moviesListAdapter
+        viewBinding.moviesList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = moviesListAdapter
+        }
     }
 
     override fun showMovies(list: List<MovieModel>) {
@@ -46,7 +47,6 @@ class MoviesListFragment : AbsFragment(R.layout.fragment_movies_list),MoviesList
     }
 
     companion object {
-
         fun newInstance(): Fragment =
             MoviesListFragment()
     }

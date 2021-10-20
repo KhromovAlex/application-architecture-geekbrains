@@ -6,6 +6,7 @@ import com.example.applicationarchitecturegeekbrains.presentation.movie.MovieDet
 import com.github.terrakok.cicerone.Router
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import moxy.MvpPresenter
 
 class MoviesListPresenter @AssistedInject constructor(
@@ -18,7 +19,7 @@ class MoviesListPresenter @AssistedInject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        disposable.add(
+        disposable +=
             movieRepository
                 .getMovies()
                 .map { movies -> movies.map(MovieModel.Mapper::map) }
@@ -28,7 +29,7 @@ class MoviesListPresenter @AssistedInject constructor(
                     viewState::showMovies,
                     viewState::showError,
                 )
-        )
+
 
     }
 

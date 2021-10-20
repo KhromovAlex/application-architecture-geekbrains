@@ -2,15 +2,14 @@ package com.example.applicationarchitecturegeekbrains.presentation.movie
 
 import com.example.applicationarchitecturegeekbrains.presentation.model.MovieModel
 import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.alias.SingleState
 
 interface MovieDetailsView : MvpView {
 
-    @StateStrategyType(AddToEndSingleStrategy::class)
+    @SingleState
     fun showMovie(movie: MovieModel)
 
-    @StateStrategyType(AddToEndSingleStrategy::class)
+    @SingleState
     fun showError(throwable: Throwable)
 
 }

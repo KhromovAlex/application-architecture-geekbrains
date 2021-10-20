@@ -6,6 +6,7 @@ import com.example.applicationarchitecturegeekbrains.scheduler.Schedulers
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import moxy.MvpPresenter
 
 class MovieDetailsPresenter @AssistedInject constructor(
@@ -18,7 +19,7 @@ class MovieDetailsPresenter @AssistedInject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        disposable.add(
+        disposable +=
             movieRepository
                 .getMovieById(id)
                 .map(MovieModel.Mapper::map)
@@ -28,7 +29,7 @@ class MovieDetailsPresenter @AssistedInject constructor(
                     viewState::showMovie,
                     viewState::showError,
                 )
-        )
+
 
     }
 
