@@ -2,4 +2,9 @@
 <resources>
     <dimen name="padding">16dp</dimen>
     <dimen name="margin">16dp</dimen>
+    <dimen name="zeroWidth">0dp</dimen>
+    <dimen name="sizeSmallPoster">48dp</dimen>
+    <dimen name="widthPoster">200dp</dimen>
+    <dimen name="sizeTitle">21sp</dimen>
+    <dimen name="sizeDate">11sp</dimen>
 </resources>
