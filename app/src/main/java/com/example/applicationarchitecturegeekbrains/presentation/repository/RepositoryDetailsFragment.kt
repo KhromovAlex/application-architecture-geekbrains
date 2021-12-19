@@ -26,7 +26,7 @@ class RepositoryDetailsFragment : AbsFragment(R.layout.fragment_repository_detai
     }
 
     companion object {
-        private const val ARG_COUNT_FORKS = "repo count forks"
+        const val ARG_COUNT_FORKS = "repo count forks"
 
         fun newInstance(countForks: Int): Fragment =
             RepositoryDetailsFragment().apply {
