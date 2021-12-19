@@ -1,5 +1,6 @@
 package com.example.applicationarchitecturegeekbrains.data
 
+import com.example.applicationarchitecturegeekbrains.*
 import com.example.applicationarchitecturegeekbrains.data.api.GitHubApi
 import com.example.applicationarchitecturegeekbrains.data.datasource.repos.GitHubReposDataSourceImpl
 import org.junit.Before
@@ -22,11 +23,8 @@ class GitHubReposDataSourceImplTest {
 
     @Test
     fun fetchRepositoriesGitHub_Test() {
-        val login = "KhromovAlex"
-        val url = "https://github.com/KhromovAlex"
+        gitHubReposDataSourceImpl.fetchRepositories(url = GITHUB_PROFILE_URL, userLogin = GITHUB_LOGIN)
 
-        gitHubReposDataSourceImpl.fetchRepositories(url = url, userLogin = login)
-
-        Mockito.verify(gitHubApi, Mockito.times(1)).fetchRepositories(url = url)
+        Mockito.verify(gitHubApi, Mockito.times(1)).fetchRepositories(url = GITHUB_PROFILE_URL)
     }
 }
